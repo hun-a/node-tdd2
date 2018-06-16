@@ -72,4 +72,13 @@ describe('DELETE /users/:id will be ', () => {
         .end(done);
     });
   });
+
+  describe('fail ', () => {
+    test('when id is not a number then returns 400 error code', done => {
+      request(app)
+        .delete('/users/one')
+        .expect(400)
+        .end(done);
+    });
+  });
 });
