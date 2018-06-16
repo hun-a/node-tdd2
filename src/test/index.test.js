@@ -123,3 +123,18 @@ describe('POST /users will be ', () => {
     });
   });
 });
+
+describe('PUT /users/:id will be ', () => {
+  describe('success ', () => {
+    test('when response updated name', done => {
+      const name = 'den';
+      request(app)
+        .put('/users/4')
+        .send({name})
+        .end((err, res) => {
+          expect(res.body).toHaveProperty('name', name);
+          done();
+        });
+    });
+  });
+});
