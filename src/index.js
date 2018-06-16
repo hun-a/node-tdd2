@@ -11,6 +11,9 @@ const users = [
 
 app.use(morgan('dev'));
 
-app.get('/users', (req, res) => res.json(users));
+app.get('/users', (req, res) => {
+  const limit = req.query.limit;
+  res.json(users.slice(0, limit));
+});
 
 export default app;
