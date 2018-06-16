@@ -32,4 +32,13 @@ app.get('/users/:id', (req, res) => {
   res.json(user);
 });
 
+app.delete('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const index = users.findIndex(user => user.id === id);
+  const isDelete = users.splice(index, 1);
+  if (!!isDelete.length) {
+    return res.status(204).end();
+  }
+});
+
 export default app;
