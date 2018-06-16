@@ -15,11 +15,20 @@ describe('GET /users will be ', () => {
 
     test('when It responds by the maximum limit number.', done => {
       request(app)
-      .get('/users?limit=2')
-      .end((err, res) => {
-        expect(res.body).toHaveLength(2);
-        done();
+        .get('/users?limit=2')
+        .end((err, res) => {
+          expect(res.body).toHaveLength(2);
+          done();
       });
+    });
+  });
+
+  describe('fail ', () => {
+    test('if limit is not a number type then respons 400 error code', done => {
+      request(app)
+        .get('/users?limit=two')
+        .expect(400)
+        .end(done);
     });
   });
 });
