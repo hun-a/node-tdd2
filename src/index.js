@@ -34,6 +34,9 @@ app.get('/users/:id', (req, res) => {
 
 app.delete('/users/:id', (req, res) => {
   const id = parseInt(req.params.id, 10);
+  if (Number.isNaN(id)) {
+    return res.status(400).end();
+  }
   const index = users.findIndex(user => user.id === id);
   const isDelete = users.splice(index, 1);
   if (!!isDelete.length) {
