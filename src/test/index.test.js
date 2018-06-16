@@ -137,4 +137,37 @@ describe('PUT /users/:id will be ', () => {
         });
     });
   });
+
+  describe('fail ', () => {
+    test('when id is not a number then returns 400 error code', done => {
+      request(app)
+        .put('/users/one')
+        .expect(400)
+        .end(done);
+    });
+
+    test('when name is not exists then returns 400 error code', done => {
+      request(app)
+        .put('/users/3')
+        .send({})
+        .expect(400)
+        .end(done);
+    });
+
+    test('when there are no matched user then returns 400 error code', done => {
+      request(app)
+        .put('/users/999')
+        .send({name: 'foo'})
+        .expect(404)
+        .end(done);
+    });
+
+    test('when name is duplicated then returns 409 error code', done => {
+      request(app)
+        .put('/users/3')
+        .send({name: 'bek'})
+        .expect(409)
+        .end(done);
+    });
+  });
 });
