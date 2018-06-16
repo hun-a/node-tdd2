@@ -58,15 +58,18 @@ app.post('/users', (req, res) => {
     return res.status(409).end();
   }
 
-  const beforeLength = users.length;
-  const id = parseInt(
-    users.reduce((max, v) => {
-      max < v.id ? v.id : max
-    }, 0), 10) + 1;
-  const afterLength = users.push({id, name});
-  if (beforeLength + 1 === afterLength) {
-    return res.status(201).json(users[afterLength - 1]).end();
-  }
+  const id = new Date().getTime();
+  const user = {id, name};
+  users.push(user);
+  res.status(201).json(user).end();
+});
+
+app.put('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const name = req.body.name;
+  const user = users.filter(user => user.id === id)[0];
+  user.name = name;
+  res.json(user).end();
 });
 
 export default app;
