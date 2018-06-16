@@ -1,0 +1,23 @@
+{
+  "name": "node-tdd2",
+  "version": "1.0.0",
+  "description": "Node with TDD",
+  "main": "bin/www.js",
+  "repository": "git@github.com:hun-a/node-tdd2.git",
+  "author": "hun-a <seunghun.chan@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.1.0",
+    "supertest": "^3.1.0"
+  },
+  "scripts": {
+    "dev": "babel src/ -d bin/ -w",
+    "test": "babel src/ -d bin/ && jest bin/test"
+  }
+}
