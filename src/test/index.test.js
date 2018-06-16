@@ -45,4 +45,20 @@ describe('GET /users/:id will be ', () => {
         });
     });
   });
+
+  describe('fail ', () => {
+    test('if id is not a number then respons 400 error code', done => {
+      request(app)
+        .get('/users/one')
+        .expect(400)
+        .end(done);
+    });
+
+    test(`when couldn't find user by id then returns 404 error code`, done => {
+      request(app)
+        .get('/users/4')
+        .expect(404)
+        .end(done);
+    });
+  });
 });
