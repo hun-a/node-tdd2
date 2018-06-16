@@ -62,3 +62,14 @@ describe('GET /users/:id will be ', () => {
     });
   });
 });
+
+describe('DELETE /users/:id will be ', () => {
+  describe('success ', () => {
+    test('then returns 204 status code', done => {
+      request(app)
+        .delete('/users/1')
+        .expect(204)
+        .end(done);
+    });
+  });
+});
