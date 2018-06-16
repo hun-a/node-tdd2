@@ -104,4 +104,22 @@ describe('POST /users will be ', () => {
       expect(body).toHaveProperty('name', newUser.name);
     });
   });
+
+  describe('fail ', () => {
+    test('if there are no params then returns 400 error code', done => {
+      request(app)
+        .post('/users')
+        .send({})
+        .expect(400)
+        .end(done);
+    });
+
+    test('if there are duplicated names then returns 409 error code', done => {
+      request(app)
+        .post('/users')
+        .send({name: 'daniel'})
+        .expect(409)
+        .end(done);
+    });
+  });
 });
