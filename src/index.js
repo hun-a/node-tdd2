@@ -49,6 +49,15 @@ app.delete('/users/:id', (req, res) => {
 
 app.post('/users', (req, res) => {
   const name = req.body.name;
+  if (!name) {
+    return res.status(400).end();
+  }
+
+  const isConflict = users.filter(user => user.name === name).length;
+  if (isConflict) {
+    return res.status(409).end();
+  }
+
   const beforeLength = users.length;
   const id = parseInt(
     users.reduce((max, v) => {
