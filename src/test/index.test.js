@@ -129,7 +129,7 @@ describe('PUT /users/:id will be ', () => {
     test('when response updated name', done => {
       const name = 'den';
       request(app)
-        .put('/users/4')
+        .put('/users/3')
         .send({name})
         .end((err, res) => {
           expect(res.body).toHaveProperty('name', name);
