@@ -82,3 +82,26 @@ describe('DELETE /users/:id will be ', () => {
     });
   });
 });
+
+describe('POST /users will be ', () => {
+  describe('success ', () => {
+    let body;
+    const newUser = {name: 'daniel'};
+    beforeAll(done => {
+      request(app)
+        .post('/users')
+        .send(newUser)
+        .expect(201)
+        .end((err, res) => {
+          body = res.body;
+          done();
+        });
+    });
+    test('when returns new created user', () => {
+      expect(body).toHaveProperty('id');
+    });
+    test('when returns name of new created user', () => {
+      expect(body).toHaveProperty('name', newUser.name);
+    });
+  });
+});
