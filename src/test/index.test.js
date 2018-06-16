@@ -32,3 +32,17 @@ describe('GET /users will be ', () => {
     });
   });
 });
+
+describe('GET /users/:id will be ', () => {
+  describe('success ', () => {
+    test('when returns user who have id as 1', done => {
+      request(app)
+        .get('/users/1')
+        .end((err, res) => {
+          const user = res.body;
+          expect(user).toHaveProperty('id', 1);
+          done();
+        });
+    });
+  });
+});
