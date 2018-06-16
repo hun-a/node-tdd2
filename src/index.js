@@ -47,4 +47,17 @@ app.delete('/users/:id', (req, res) => {
   }
 });
 
+app.post('/users', (req, res) => {
+  const name = req.body.name;
+  const beforeLength = users.length;
+  const id = parseInt(
+    users.reduce((max, v) => {
+      max < v.id ? v.id : max
+    }, 0), 10) + 1;
+  const afterLength = users.push({id, name});
+  if (beforeLength + 1 === afterLength) {
+    return res.status(201).json(users[afterLength - 1]).end();
+  }
+});
+
 export default app;
