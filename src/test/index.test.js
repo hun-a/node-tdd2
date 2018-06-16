@@ -12,5 +12,14 @@ describe('GET /users will be ', () => {
           done();
         });
     });
+
+    test('when It responds by the maximum limit number.', done => {
+      request(app)
+      .get('/users?limit=2')
+      .end((err, res) => {
+        expect(res.body).toHaveLength(2);
+        done();
+      });
+    });
   });
 });
