@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -10,6 +11,8 @@ const users = [
 ];
 
 app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/users', (req, res) => {
   req.query.limit = req.query.limit || users.length;
