@@ -13,12 +13,13 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
+    "babel-cli": "^6.26.0",
     "jest": "^23.1.0",
     "supertest": "^3.1.0"
   },
   "scripts": {
     "dev": "babel src/ -d bin/ -w",
-    "test": "NODE_ENV=test babel src/ -d bin/ && jest --detectOpenHandles bin/api/*/*.spec.js",
+    "test": "NODE_ENV=test node_modules/.bin/babel src/ -d bin/ && jest --detectOpenHandles bin/api/*/*.spec.js",
     "start": "PORT=3000 node bin/www.js"
   }
 }
