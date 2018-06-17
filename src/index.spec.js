@@ -1,5 +1,5 @@
 
-import app from '../index';
+import app from './index';
 import request from 'supertest';
 
 describe('GET /users will be ', () => {
