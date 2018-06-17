@@ -18,6 +18,7 @@
   },
   "scripts": {
     "dev": "babel src/ -d bin/ -w",
-    "test": "NODE_ENV=test babel src/ -d bin/ && jest --detectOpenHandles bin/api/*/*.spec.js"
+    "test": "NODE_ENV=test babel src/ -d bin/ && jest --detectOpenHandles bin/api/*/*.spec.js",
+    "start": "PORT=3000 node bin/www.js"
   }
 }
